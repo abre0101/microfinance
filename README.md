@@ -3,10 +3,29 @@
 A secure, transparent digital microfinance platform for university employees.
 
 ## Tech Stack
-- **Frontend**: React.js (JSX)
-- **Backend**: Flask (Python)
+- **Frontend**: React.js (JSX) - Organized by user roles
+- **Backend**: Flask (Python) - RESTful API
 - **Database**: MongoDB (Real database - no mock data)
 - **Currency**: Ethiopian Birr (ETB)
+
+## Project Structure
+
+The project is organized by user roles for better maintainability:
+
+```
+frontend/src/pages/
+├── auth/              # Login & Registration
+├── public/            # Public pages (Home, FAQ, etc.)
+├── staff/             # Staff member pages
+├── loan-officer/      # Loan officer pages
+├── loan-committee/    # Committee pages
+├── inspector/         # Inspector pages
+├── accountant/        # Accountant pages
+├── admin/             # Admin pages
+└── shared/            # Shared components
+```
+
+For detailed structure, see [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)
 
 ## Features
 - **Loan Management**: Application, Committee Review, Inspection, Approval, Disbursement

@@ -1,11 +1,11 @@
 import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import StaffDashboard from './StaffDashboard';
-import OfficerDashboard from './OfficerDashboard';
-import CommitteeDashboard from './CommitteeDashboard';
-import InspectorDashboard from './InspectorDashboard';
-import AccountantDashboard from './AccountantDashboard';
-import AdminDashboard from './AdminDashboard';
+import { useAuth } from '../../context/AuthContext';
+import StaffDashboard from '../staff/StaffDashboard';
+import OfficerDashboard from '../loan-officer/OfficerDashboard';
+import CommitteeDashboard from '../loan-committee/CommitteeDashboard';
+import InspectorDashboard from '../inspector/InspectorDashboard';
+import AccountantDashboard from '../accountant/AccountantDashboard';
+import AdminDashboard from '../admin/AdminDashboard';
 
 const Dashboard = () => {
   const { user } = useAuth();

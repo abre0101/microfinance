@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import LoanApplication from './pages/LoanApplication';
-import MyLoans from './pages/MyLoans';
-import Savings from './pages/Savings';
-import LoanSchedule from './pages/LoanSchedule';
-import FAQ from './pages/FAQ';
-import Office from './pages/Office';
-import CompanyProfile from './pages/CompanyProfile';
-import PublicDocument from './pages/PublicDocument';
+import Home from './pages/public/Home';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import Dashboard from './pages/shared/Dashboard';
+import LoanApplication from './pages/staff/LoanApplication';
+import MyLoans from './pages/staff/MyLoans';
+import Savings from './pages/staff/Savings';
+import LoanSchedule from './pages/staff/LoanSchedule';
+import FAQ from './pages/public/FAQ';
+import Office from './pages/public/Office';
+import CompanyProfile from './pages/public/CompanyProfile';
+import PublicDocument from './pages/public/PublicDocument';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const PrivateRoute = ({ children }) => {
