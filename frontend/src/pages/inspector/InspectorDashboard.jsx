@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import Navigation from '../../components/Navigation';
+import SystemLayout from '../../components/SystemLayout';
 
 const InspectorDashboard = () => {
   const [pendingInspections, setPendingInspections] = useState([]);
@@ -26,24 +26,12 @@ const InspectorDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <Navigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Inspector Dashboard</h1>
-              <p className="text-lg text-white/90">Welcome, {user?.name || 'Inspector'}! 🔍</p>
-            </div>
-            <div className="hidden md:block">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                <svg className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
-            </div>
-          </div>
+    <SystemLayout>
+      <div>
+        {/* Welcome Card */}
+        <div className="mb-6 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, {user?.name || 'Inspector'}! 🔍</h2>
+          <p className="text-white/90">Conduct and manage asset inspections</p>
         </div>
         
         {loading ? (
@@ -167,7 +155,7 @@ const InspectorDashboard = () => {
           </>
         )}
       </div>
-    </div>
+    </SystemLayout>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import Navigation from '../../components/Navigation';
+import SystemLayout from '../../components/SystemLayout';
 
 const CommitteeDashboard = () => {
   const [pendingLoans, setPendingLoans] = useState([]);
@@ -62,13 +62,12 @@ const CommitteeDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Loan Committee Dashboard</h1>
-          <p className="mt-2 text-gray-600">Welcome, {user?.name || 'Committee Member'}</p>
+    <SystemLayout>
+      <div>
+        {/* Welcome Card */}
+        <div className="mb-6 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, {user?.name || 'Committee Member'}! 👔</h2>
+          <p className="text-white/90">Review and approve loan applications</p>
         </div>
         
         {loading ? (
@@ -213,7 +212,7 @@ const CommitteeDashboard = () => {
           </>
         )}
       </div>
-    </div>
+    </SystemLayout>
   );
 };
 

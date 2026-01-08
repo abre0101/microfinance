@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import Navigation from '../../components/Navigation';
+import SystemLayout from '../../components/SystemLayout';
 
 const OfficerDashboard = () => {
   const [stats, setStats] = useState(null);
@@ -34,24 +34,12 @@ const OfficerDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <Navigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Loan Officer Dashboard</h1>
-              <p className="text-lg text-white/90">Welcome back, {user?.name || 'Officer'}! 👋</p>
-            </div>
-            <div className="hidden md:block">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                <svg className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-            </div>
-          </div>
+    <SystemLayout>
+      <div>
+        {/* Welcome Card */}
+        <div className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, {user?.name || 'Officer'}! 👋</h2>
+          <p className="text-white/90">Review and process loan applications</p>
         </div>
         
         {loading ? (
@@ -179,7 +167,7 @@ const OfficerDashboard = () => {
           </>
         )}
       </div>
-    </div>
+    </SystemLayout>
   );
 };
 

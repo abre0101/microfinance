@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import Navigation from '../../components/Navigation';
+import SystemLayout from '../../components/SystemLayout';
 
 const AccountantDashboard = () => {
   const [report, setReport] = useState(null);
@@ -47,24 +47,12 @@ const AccountantDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <Navigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8 bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl p-8 text-white shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Accountant Dashboard</h1>
-              <p className="text-lg text-white/90">Welcome, {user?.name || 'Accountant'}! 💰</p>
-            </div>
-            <div className="hidden md:block">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-                <svg className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-              </div>
-            </div>
-          </div>
+    <SystemLayout>
+      <div>
+        {/* Welcome Card */}
+        <div className="mb-6 bg-gradient-to-r from-green-600 to-teal-600 rounded-xl p-6 text-white shadow-lg">
+          <h2 className="text-2xl font-bold mb-2">Welcome back, {user?.name || 'Accountant'}! 💰</h2>
+          <p className="text-white/90">Manage disbursements and financial records</p>
         </div>
         
         {loading ? (
@@ -211,7 +199,7 @@ const AccountantDashboard = () => {
           </>
         )}
       </div>
-    </div>
+    </SystemLayout>
   );
 };
 
