@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import logo from '../assets/Debre_Markos_University_logo.png';
-import coinsImage from '../assets/microfinance_pic.jpg';
-import pic1 from '../assets/PIC1.png';
-import pic2 from '../assets/PIC2.png';
-import clientsImage from '../assets/clients-2.png';
-import disbImage from '../assets/disb-1.png';
-import savingImage from '../assets/saving1-2.png';
+import { useAuth } from '../../context/AuthContext';
+import logo from '../../assets/Debre_Markos_University_logo.png';
+import coinsImage from '../../assets/microfinance_pic.jpg';
+import pic1 from '../../assets/PIC1.png';
+import pic2 from '../../assets/PIC2.png';
+import clientsImage from '../../assets/clients-2.png';
+import disbImage from '../../assets/disb-1.png';
+import savingImage from '../../assets/saving1-2.png';
+import moeLogo from '../../assets/MOE.jfif';
+import nbeLogo from '../../assets/NBE.jfif';
 
 const Home = () => {
   const { user } = useAuth();
@@ -669,54 +671,53 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Trusted By Our Valued Partners
+              Regulated & Trusted Partners
             </h2>
             <p className="text-xl text-gray-600">
-              We're proud to work with these amazing organizations
+              Operating under the supervision of regulatory bodies and in partnership with leading institutions
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {/* Partner Logo Placeholders */}
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition flex items-center justify-center h-32">
+            {/* Debre Markos University */}
+            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-40">
               <div className="text-center">
-                <div className="flex items-center justify-center mx-auto mb-2">
-                  <img src={logo} alt="Debre Markos University" className="h-16 w-16 object-contain" />
+                <div className="flex items-center justify-center mx-auto mb-3">
+                  <img src={logo} alt="Debre Markos University" className="h-20 w-20 object-contain" />
                 </div>
                 <p className="text-sm font-semibold text-gray-700">Debre Markos University</p>
               </div>
             </div>
             
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition flex items-center justify-center h-32">
+            {/* National Bank of Ethiopia */}
+            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-40">
               <div className="text-center">
-                <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                <div className="flex items-center justify-center mx-auto mb-3">
+                  <img src={nbeLogo} alt="National Bank of Ethiopia" className="h-20 w-20 object-contain rounded-lg" />
                 </div>
                 <p className="text-sm font-semibold text-gray-700">National Bank of Ethiopia</p>
               </div>
             </div>
             
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition flex items-center justify-center h-32">
+            {/* Ministry of Education */}
+            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-40">
               <div className="text-center">
-                <div className="h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+                <div className="flex items-center justify-center mx-auto mb-3">
+                  <img src={moeLogo} alt="Ministry of Education" className="h-20 w-20 object-contain rounded-lg" />
                 </div>
                 <p className="text-sm font-semibold text-gray-700">Ministry of Education</p>
               </div>
             </div>
             
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition flex items-center justify-center h-32">
+            {/* Staff Association */}
+            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center h-40">
               <div className="text-center">
-                <div className="h-16 w-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <svg className="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-20 w-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+                  <svg className="h-10 w-10 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <p className="text-sm font-semibold text-gray-700">Staff Association</p>
+                <p className="text-sm font-semibold text-gray-700">University Staff Association</p>
               </div>
             </div>
           </div>

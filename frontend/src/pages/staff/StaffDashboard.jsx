@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getStaffDashboard } from '../services/api';
-import { useAuth } from '../context/AuthContext';
-import Navigation from '../components/Navigation';
+import { getStaffDashboard } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
+import Navigation from '../../components/Navigation';
 
 const StaffDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);

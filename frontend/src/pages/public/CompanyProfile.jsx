@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/Debre_Markos_University_logo.png';
+import logo from '../../assets/Debre_Markos_University_logo.png';
 
 const CompanyProfile = () => {
   return (

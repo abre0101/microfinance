@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import logo from '../assets/Debre_Markos_University_logo.png';
-import registerBg from '../assets/register_pic.webp';
+import { useAuth } from '../../context/AuthContext';
+import logo from '../../assets/Debre_Markos_University_logo.png';
+import registerBg from '../../assets/register_pic.webp';
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,6 +19,8 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
 
@@ -29,7 +31,6 @@ const Register = () => {
 
   const nextStep = () => {
     setError('');
-    // Validation for each step
     if (currentStep === 1) {
       if (!formData.firstName || !formData.lastName || !formData.phone) {
         setError('Please fill in all personal information fields');
@@ -73,344 +74,371 @@ const Register = () => {
   };
 
   const steps = [
-    { number: 1, title: 'Personal Info', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
-    { number: 2, title: 'Employment', icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
-    { number: 3, title: 'Security', icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z' }
+    { number: 1, title: 'Personal Info', icon: '👤' },
+    { number: 2, title: 'Employment', icon: '💼' },
+    { number: 3, title: 'Security', icon: '🔐' }
   ];
 
   return (
-    <div 
-      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
-      style={{backgroundImage: `url(${registerBg})`}}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-primary-800/20 to-secondary-900/30"></div>
-      
-      {/* Content */}
-      <div className="relative z-10">
-        {/* Navigation Bar */}
-        <nav className="bg-white/20 backdrop-blur-sm border-b border-white/30 shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex items-center">
-                <Link to="/" className="flex items-center space-x-3">
-                  <img src={logo} alt="Debre Markos University" className="h-10 w-10" />
-                  <div>
-                    <span className="text-xl font-bold text-white block drop-shadow-lg">
-                      Markos Microfinance
-                    </span>
-                    <span className="text-xs text-white drop-shadow-md">
-                      ማርቆስ ማይክሮፋይናንስ
-                    </span>
-                  </div>
-                </Link>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/"
-                  className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium transition drop-shadow-md"
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/login"
-                  className="bg-white text-primary-600 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm font-medium transition shadow-lg"
-                >
-                  Login
-                </Link>
-              </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 relative overflow-hidden">
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-br from-pink-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
+
+      {/* Navigation Bar */}
+      <nav className="relative z-10 bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center space-x-3 group">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                  <img src={logo} alt="Debre Markos University" className="h-10 w-10 relative z-10" />
+                </div>
+                <div>
+                  <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent block">
+                    Markos Microfinance
+                  </span>
+                  <span className="text-xs text-gray-600">
+                    ማርቆስ ማይክሮፋይናንስ
+                  </span>
+                </div>
+              </Link>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-lg text-sm font-medium transition"
+              >
+                Home
+              </Link>
+              <Link
+                to="/login"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 px-5 py-2 rounded-lg text-sm font-semibold transition shadow-md hover:shadow-lg transform hover:scale-105"
+              >
+                Sign In
+              </Link>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        {/* Register Form */}
-        <div className="min-h-[calc(100vh-4rem)] flex items-center px-4 sm:px-6 lg:px-8 py-12">
-          <div className="max-w-4xl w-full mx-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      {/* Main Content */}
+      <div className="relative z-10 min-h-[calc(100vh-4rem)] flex items-center px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-6xl w-full mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+            {/* Left Side - Info & Steps */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Welcome Message */}
+              <div className="hidden lg:block space-y-4 animate-fadeInUp">
+                <div className="inline-block">
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    Join Us Today 🎉
+                  </span>
+                </div>
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 bg-clip-text text-transparent">
+                    Create Your
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    Account
+                  </span>
+                </h1>
+                <p className="text-lg text-gray-600">
+                  Join thousands of university staff members managing their finances with ease.
+                </p>
+              </div>
+
               {/* Progress Steps */}
-              <div className="bg-gradient-to-r from-primary-600 to-secondary-600 px-8 py-6">
-                <div className="flex items-center justify-between max-w-2xl mx-auto">
-                  {steps.map((step, index) => (
-                    <div key={step.number} className="flex items-center">
-                      <div className="flex flex-col items-center">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          currentStep >= step.number 
-                            ? 'bg-white text-primary-600 shadow-lg scale-110' 
-                            : 'bg-white/30 text-white'
-                        }`}>
-                          {currentStep > step.number ? (
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                          ) : (
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={step.icon} />
-                            </svg>
-                          )}
-                        </div>
-                        <span className={`mt-2 text-sm font-medium ${
-                          currentStep >= step.number ? 'text-white' : 'text-white/60'
-                        }`}>
-                          {step.title}
-                        </span>
+              <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-white/50">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Registration Steps</h3>
+                <div className="space-y-4">
+                  {steps.map((step) => (
+                    <div
+                      key={step.number}
+                      className={`flex items-center space-x-4 p-3 rounded-xl transition-all ${
+                        currentStep === step.number
+                          ? 'bg-gradient-to-r from-purple-100 to-pink-100 shadow-md'
+                          : currentStep > step.number
+                          ? 'bg-green-50'
+                          : 'bg-gray-50'
+                      }`}
+                    >
+                      <div
+                        className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all ${
+                          currentStep === step.number
+                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                            : currentStep > step.number
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gray-200 text-gray-600'
+                        }`}
+                      >
+                        {currentStep > step.number ? '✓' : step.icon}
                       </div>
-                      {index < steps.length - 1 && (
-                        <div className={`w-24 h-1 mx-4 rounded transition-all duration-300 ${
-                          currentStep > step.number ? 'bg-white' : 'bg-white/30'
-                        }`}></div>
-                      )}
+                      <div className="flex-1">
+                        <p className={`font-semibold ${currentStep === step.number ? 'text-purple-700' : 'text-gray-700'}`}>
+                          Step {step.number}
+                        </p>
+                        <p className="text-sm text-gray-600">{step.title}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Form Content */}
-              <div className="p-8 lg:p-12">
-                <div className="max-w-2xl mx-auto">
-                  {/* Header */}
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h2>
-                    <p className="text-gray-600">Step {currentStep} of 3 - {steps[currentStep - 1].title}</p>
+              {/* Decorative Image */}
+              <div className="hidden lg:block relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-3xl blur-2xl"></div>
+                <img 
+                  src={registerBg} 
+                  alt="Register" 
+                  className="relative rounded-3xl shadow-2xl w-full h-48 object-cover border-4 border-white"
+                />
+              </div>
+            </div>
+
+            {/* Right Side - Registration Form */}
+            <div className="lg:col-span-3">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 lg:p-10 border border-white/50 animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+                {/* Form Header */}
+                <div className="text-center mb-8">
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-4 shadow-lg">
+                      <img src={logo} alt="Logo" className="h-16 w-16" />
+                    </div>
                   </div>
+                  <h2 className="text-3xl font-bold mb-2">
+                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      {steps[currentStep - 1].title}
+                    </span>
+                  </h2>
+                  <p className="text-gray-600">Step {currentStep} of 3</p>
+                </div>
 
-                  {/* Error/Success Messages */}
-                  {error && (
-                    <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg mb-6 animate-fadeInUp">
-                      <div className="flex items-center">
-                        <svg className="h-5 w-5 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p className="text-red-700 text-sm font-medium">{error}</p>
-                      </div>
+                {/* Error/Success Messages */}
+                {error && (
+                  <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-xl mb-6 animate-shake">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-red-700 text-sm font-medium">{error}</p>
                     </div>
-                  )}
-                  
-                  {success && (
-                    <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg mb-6 animate-fadeInUp">
-                      <div className="flex items-center">
-                        <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p className="text-green-700 text-sm font-medium">{success}</p>
-                      </div>
-                    </div>
-                  )}
+                  </div>
+                )}
 
-                  <form onSubmit={handleSubmit}>
-                    {/* Step 1: Personal Information */}
-                    {currentStep === 1 && (
-                      <div className="space-y-5 animate-fadeInUp">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          <div>
-                            <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
-                              First Name *
-                            </label>
-                            <input
-                              id="firstName"
-                              type="text"
-                              name="firstName"
-                              placeholder="John"
-                              value={formData.firstName}
-                              onChange={handleChange}
-                              required
-                              className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
-                              Last Name *
-                            </label>
-                            <input
-                              id="lastName"
-                              type="text"
-                              name="lastName"
-                              placeholder="Doe"
-                              value={formData.lastName}
-                              onChange={handleChange}
-                              required
-                              className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                            />
-                          </div>
-                        </div>
+                {success && (
+                  <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-xl mb-6">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-green-700 text-sm font-medium">{success}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Step 1: Personal Information */}
+                  {currentStep === 1 && (
+                    <div className="space-y-5">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                            Phone Number *
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            First Name
                           </label>
                           <input
-                            id="phone"
-                            type="tel"
-                            name="phone"
-                            placeholder="+251 912 345 678"
-                            value={formData.phone}
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
                             onChange={handleChange}
-                            required
-                            className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                            placeholder="John"
+                            className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            Last Name
+                          </label>
+                          <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="Doe"
+                            className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
                           />
                         </div>
                       </div>
-                    )}
-
-                    {/* Step 2: Employment Information */}
-                    {currentStep === 2 && (
-                      <div className="space-y-5 animate-fadeInUp">
-                        <div>
-                          <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                            University Email *
-                          </label>
-                          <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="your.name@uni.edu"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                          />
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          <div>
-                            <label htmlFor="employee_id" className="block text-sm font-semibold text-gray-700 mb-2">
-                              Employee ID *
-                            </label>
-                            <input
-                              id="employee_id"
-                              type="text"
-                              name="employee_id"
-                              placeholder="EMP001"
-                              value={formData.employee_id}
-                              onChange={handleChange}
-                              required
-                              className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="department" className="block text-sm font-semibold text-gray-700 mb-2">
-                              Department *
-                            </label>
-                            <select
-                              id="department"
-                              name="department"
-                              value={formData.department}
-                              onChange={handleChange}
-                              required
-                              className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                            >
-                              <option value="">Select Department</option>
-                              <option value="engineering">Engineering</option>
-                              <option value="science">Science</option>
-                              <option value="arts">Arts</option>
-                              <option value="business">Business</option>
-                              <option value="education">Education</option>
-                              <option value="health">Health Sciences</option>
-                              <option value="admin">Administration</option>
-                            </select>
-                          </div>
-                        </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="+251 912 345 678"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                        />
                       </div>
-                    )}
+                    </div>
+                  )}
 
-                    {/* Step 3: Security */}
-                    {currentStep === 3 && (
-                      <div className="space-y-5 animate-fadeInUp">
-                        <div>
-                          <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                            Password *
-                          </label>
+                  {/* Step 2: Employment Information */}
+                  {currentStep === 2 && (
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          University Email
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="your.name@uni.edu"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Employee ID
+                        </label>
+                        <input
+                          type="text"
+                          name="employee_id"
+                          value={formData.employee_id}
+                          onChange={handleChange}
+                          placeholder="EMP001"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Department
+                        </label>
+                        <input
+                          type="text"
+                          name="department"
+                          value={formData.department}
+                          onChange={handleChange}
+                          placeholder="Computer Science"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 3: Security */}
+                  {currentStep === 3 && (
+                    <div className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Password
+                        </label>
+                        <div className="relative">
                           <input
-                            id="password"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             name="password"
-                            placeholder="••••••••"
                             value={formData.password}
                             onChange={handleChange}
-                            required
-                            className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
-                          />
-                          <p className="mt-2 text-sm text-gray-500">Must be at least 8 characters long</p>
-                        </div>
-                        <div>
-                          <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
-                            Confirm Password *
-                          </label>
-                          <input
-                            id="confirmPassword"
-                            type="password"
-                            name="confirmPassword"
                             placeholder="••••••••"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            required
-                            className="block w-full px-4 py-3.5 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                            className="w-full px-4 py-3.5 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
                           />
-                        </div>
-                        <div className="flex items-start">
-                          <input
-                            id="agreeTerms"
-                            type="checkbox"
-                            name="agreeTerms"
-                            checked={formData.agreeTerms}
-                            onChange={handleChange}
-                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-                          />
-                          <label htmlFor="agreeTerms" className="ml-3 text-sm text-gray-600">
-                            I agree to the <a href="#" className="text-primary-600 hover:text-primary-700 font-medium">Terms and Conditions</a> and <a href="#" className="text-primary-600 hover:text-primary-700 font-medium">Privacy Policy</a>
-                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
+                          >
+                            {showPassword ? '👁️' : '👁️‍🗨️'}
+                          </button>
                         </div>
                       </div>
-                    )}
-
-                    {/* Navigation Buttons */}
-                    <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
-                      {currentStep > 1 ? (
-                        <button
-                          type="button"
-                          onClick={prevStep}
-                          className="flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-200"
-                        >
-                          <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                          </svg>
-                          Previous
-                        </button>
-                      ) : (
-                        <div></div>
-                      )}
-
-                      {currentStep < 3 ? (
-                        <button
-                          type="button"
-                          onClick={nextStep}
-                          className="flex items-center px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold hover:from-primary-700 hover:to-primary-800 transition-all duration-200 shadow-lg hover:shadow-xl ml-auto"
-                        >
-                          Next
-                          <svg className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      ) : (
-                        <button
-                          type="submit"
-                          className="flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl ml-auto"
-                        >
-                          Complete Registration
-                          <svg className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </button>
-                      )}
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Confirm Password
+                        </label>
+                        <div className="relative">
+                          <input
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            placeholder="••••••••"
+                            className="w-full px-4 py-3.5 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover:border-gray-300"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
+                          >
+                            {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <input
+                          type="checkbox"
+                          name="agreeTerms"
+                          checked={formData.agreeTerms}
+                          onChange={handleChange}
+                          className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                        />
+                        <label className="ml-3 text-sm text-gray-600">
+                          I agree to the{' '}
+                          <a href="#" className="text-purple-600 hover:text-purple-700 font-semibold">
+                            Terms and Conditions
+                          </a>
+                        </label>
+                      </div>
                     </div>
-                  </form>
+                  )}
 
-                  {/* Login Link */}
-                  <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-600">
-                      Already have an account?{' '}
-                      <Link to="/login" className="font-semibold text-primary-600 hover:text-primary-700 transition">
-                        Login here
-                      </Link>
-                    </p>
+                  {/* Navigation Buttons */}
+                  <div className="flex gap-4 pt-4">
+                    {currentStep > 1 && (
+                      <button
+                        type="button"
+                        onClick={prevStep}
+                        className="flex-1 py-3.5 px-6 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all"
+                      >
+                        ← Previous
+                      </button>
+                    )}
+                    {currentStep < 3 ? (
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        className="flex-1 py-3.5 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                      >
+                        Next →
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="flex-1 py-3.5 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                      >
+                        Create Account ✓
+                      </button>
+                    )}
                   </div>
+                </form>
+
+                {/* Login Link */}
+                <div className="mt-6 text-center">
+                  <p className="text-sm text-gray-600">
+                    Already have an account?{' '}
+                    <Link to="/login" className="font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hover:from-purple-700 hover:to-pink-700 transition">
+                      Sign in here →
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>

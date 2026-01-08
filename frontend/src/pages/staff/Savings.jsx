@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getSavingsBalance } from '../services/api';
-import Navigation from '../components/Navigation';
+import { getSavingsBalance } from '../../services/api';
+import Navigation from '../../components/Navigation';
 
 const Savings = () => {
   const [savings, setSavings] = useState(null);

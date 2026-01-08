@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getMyLoans } from '../services/api';
-import Navigation from '../components/Navigation';
+import { getMyLoans } from '../../services/api';
+import Navigation from '../../components/Navigation';
 import { Link } from 'react-router-dom';
 
 const MyLoans = () => {

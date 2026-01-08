@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getLoanProducts, applyLoan } from '../services/api';
-import Navigation from '../components/Navigation';
+import { getLoanProducts, applyLoan } from '../../services/api';
+import Navigation from '../../components/Navigation';
 
 const LoanApplication = () => {
   const [products, setProducts] = useState([]);

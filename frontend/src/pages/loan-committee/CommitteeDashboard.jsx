@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-import Navigation from '../components/Navigation';
+import { useAuth } from '../../context/AuthContext';
+import Navigation from '../../components/Navigation';
 
 const CommitteeDashboard = () => {
   const [pendingLoans, setPendingLoans] = useState([]);
